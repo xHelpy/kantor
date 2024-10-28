@@ -13,10 +13,18 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
-            <Entry
-                x:Name="xEntry">
+            <Picker x:Name="picker" Title="Wybierz walute: ">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>EUR</x:String>
+                        <x:String>USD</x:String>
+                        <x:String>AUD</x:String>
+                        <x:String>GBP</x:String>
+                        
+                    </x:Array>
+                </Picker.ItemsSource>
                 
-            </Entry>
+            </Picker>
             <Label x:Name="cLabel" Text=""/>
             
             <DatePicker x:Name="dpData" MinimumDate="2003-01-01">
