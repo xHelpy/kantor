@@ -13,7 +13,15 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <Entry
+                x:Name="xEntry">
+                
+            </Entry>
             <Label x:Name="cLabel" Text=""/>
+            
+            <DatePicker x:Name="dpData" MinimumDate="2003-01-01">
+                
+            </DatePicker>
         </VerticalStackLayout>
     </ScrollView>
 
