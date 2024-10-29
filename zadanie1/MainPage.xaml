@@ -10,7 +10,8 @@
            
         
             <HorizontalStackLayout>
-                <DatePicker x:Name="dpData" MinimumDate="2003-01-01">
+                
+                <DatePicker x:Name="dpData" MinimumDate="2003-01-01" >
 
                 </DatePicker>
                 <DatePicker x:Name="dpData2" MinimumDate="2003-01-01">

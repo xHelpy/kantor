@@ -37,7 +37,11 @@ namespace zadanie1
         {
             string date = dpData.Date.ToString("yyyy-MM-dd");
             string date2 = dpData2.Date.ToString("yyyy-MM-dd");
-            string usd = "https://api.nbp.pl/api/exchangerates/rates/c/usd/"+date+"/?format=json";
+            if (dpData.Date.DayOfWeek == DayOfWeek.Sunday || dpData.Date.DayOfWeek == DayOfWeek.Saturday || dpData2.Date.DayOfWeek == DayOfWeek.Saturday || dpData2.Date.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return; 
+            }
+            string usd = "https://api.nbp.pl/api/exchangerates/rates/c/usd/" + date + "/?format=json";
             string usd2 = "https://api.nbp.pl/api/exchangerates/rates/c/usd/" + date2 + "/?format=json";
             string eur = "https://api.nbp.pl/api/exchangerates/rates/c/eur/" + date + "/?format=json";
             string eur2 = "https://api.nbp.pl/api/exchangerates/rates/c/eur/" + date2 + "/?format=json";
@@ -49,7 +53,7 @@ namespace zadanie1
             string eurj2;
             string gpdj;
             string gpdj2;
-            
+
             using (var webClient = new WebClient())
             {
                 usdj = webClient.DownloadString(usd);
@@ -72,44 +76,50 @@ namespace zadanie1
             //    s += $"Data: {usdc.rates[0].effectiveDate}\n";
             //   s += $"Cena skupu: {usdc.rates[0].bid}\n";
             //   s += $"Cena sprzedarzy: {usdc.rates[0].ask}\n";
+
             dLabel.Text = usdc.code;
-            dPrice.Text = "Skup: " + usdc.rates[0].bid + " | Sprzedaż: " + usdc.rates[0].ask + " | " +usdc2.rates[0].ask;
-            if(usdc.rates[0].ask > usdc2.rates[0].ask)
-            {
-                Console.WriteLine(usdc.rates[0].ask);
-                Console.WriteLine(usdc2.rates[0].ask);
-                dState.Source = "up.png";
+            dPrice.Text = "Skup: " + usdc.rates[0].bid + " | Sprzedaż: " + usdc.rates[0].ask + " | " + usdc2.rates[0].ask;
+        
             
-            } else
-            {
-                dState.Source = "down.png";
-            }
-            eLabel.Text = eurc.code;
-            ePrice.Text = "Skup: " + eurc.rates[0].bid + " | Sprzedaż: " + eurc.rates[0].ask + " | " + eurc2.rates[0].ask ;
-            if (eurc.rates[0].ask > eurc2.rates[0].ask)
-            {
-                Console.WriteLine(eurc.rates[0].ask);
-                Console.WriteLine(eurc2.rates[0].ask);
-                eState.Source = "up.png";
+                if (usdc.rates[0].ask > usdc2.rates[0].ask)
+                {
+                    Console.WriteLine(usdc.rates[0].ask);
+                    Console.WriteLine(usdc2.rates[0].ask);
+                    dState.Source = "up.png";
 
-            }
-            else
-            {
-                eState.Source = "down.png";
-            }
-            pLabel.Text = gpdc.code;
-            pPrice.Text = "Skup: " + gpdc.rates[0].bid + " | Sprzedaż: " + gpdc.rates[0].ask + " | " + gpdc2.rates[0].ask;
-            if (gpdc.rates[0].ask > gpdc2.rates[0].ask)
-            {
-                Console.WriteLine(gpdc.rates[0].ask);
-                Console.WriteLine(gpdc2.rates[0].ask);
-                pState.Source = "up.png";
+                }
+                else
+                {
+                    dState.Source = "down.png";
+                }
+                eLabel.Text = eurc.code;
+                ePrice.Text = "Skup: " + eurc.rates[0].bid + " | Sprzedaż: " + eurc.rates[0].ask + " | " + eurc2.rates[0].ask;
+                if (eurc.rates[0].ask > eurc2.rates[0].ask)
+                {
+                    Console.WriteLine(eurc.rates[0].ask);
+                    Console.WriteLine(eurc2.rates[0].ask);
+                    eState.Source = "up.png";
 
-            }
-            else
-            {
-                pState.Source = "down.png";
-            }
+                }
+                else
+                {
+                    eState.Source = "down.png";
+                }
+                pLabel.Text = gpdc.code;
+                pPrice.Text = "Skup: " + gpdc.rates[0].bid + " | Sprzedaż: " + gpdc.rates[0].ask + " | " + gpdc2.rates[0].ask;
+                if (gpdc.rates[0].ask > gpdc2.rates[0].ask)
+                {
+                    Console.WriteLine(gpdc.rates[0].ask);
+                    Console.WriteLine(gpdc2.rates[0].ask);
+                    pState.Source = "up.png";
+
+                }
+                else
+                {
+                    pState.Source = "down.png";
+                }
+           
+           
 
 
 
