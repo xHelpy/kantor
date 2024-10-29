@@ -36,25 +36,84 @@ namespace zadanie1
         private void OnCounterClicked(object sender, EventArgs e)
         {
             string date = dpData.Date.ToString("yyyy-MM-dd");
-            string url = "https://api.nbp.pl/api/exchangerates/rates/c/"+picker.SelectedItem+"/"+date+"/?format=json";
-            string json = "";
+            string date2 = dpData2.Date.ToString("yyyy-MM-dd");
+            string usd = "https://api.nbp.pl/api/exchangerates/rates/c/usd/"+date+"/?format=json";
+            string usd2 = "https://api.nbp.pl/api/exchangerates/rates/c/usd/" + date2 + "/?format=json";
+            string eur = "https://api.nbp.pl/api/exchangerates/rates/c/eur/" + date + "/?format=json";
+            string eur2 = "https://api.nbp.pl/api/exchangerates/rates/c/eur/" + date2 + "/?format=json";
+            string gpd = "https://api.nbp.pl/api/exchangerates/rates/c/gbp/" + date + "/?format=json";
+            string gpd2 = "https://api.nbp.pl/api/exchangerates/rates/c/gbp/" + date2 + "/?format=json";
+            string usdj;
+            string usdj2;
+            string eurj;
+            string eurj2;
+            string gpdj;
+            string gpdj2;
             
             using (var webClient = new WebClient())
             {
-                json = webClient.DownloadString(url);
+                usdj = webClient.DownloadString(usd);
+                usdj2 = webClient.DownloadString(usd2);
+                eurj = webClient.DownloadString(eur);
+                eurj2 = webClient.DownloadString(eur2);
+                gpdj = webClient.DownloadString(gpd);
+                gpdj2 = webClient.DownloadString(gpd2);
             }
 
-            Currency c = JsonSerializer.Deserialize<Currency>(json);
+            Currency usdc = JsonSerializer.Deserialize<Currency>(usdj);
+            Currency usdc2 = JsonSerializer.Deserialize<Currency>(usdj2);
+            Currency eurc = JsonSerializer.Deserialize<Currency>(eurj);
+            Currency eurc2 = JsonSerializer.Deserialize<Currency>(eurj2);
+            Currency gpdc = JsonSerializer.Deserialize<Currency>(gpdj);
+            Currency gpdc2 = JsonSerializer.Deserialize<Currency>(gpdj2);
+
+            //    string s = $"nazwa waluty: {usdc.currency}\n";
+            //    s += $"kod waluty: {usdc.code}\n";
+            //    s += $"Data: {usdc.rates[0].effectiveDate}\n";
+            //   s += $"Cena skupu: {usdc.rates[0].bid}\n";
+            //   s += $"Cena sprzedarzy: {usdc.rates[0].ask}\n";
+            dLabel.Text = usdc.code;
+            dPrice.Text = "Skup: " + usdc.rates[0].bid + " | Sprzedaż: " + usdc.rates[0].ask + " | " +usdc2.rates[0].ask;
+            if(usdc.rates[0].ask > usdc2.rates[0].ask)
+            {
+                Console.WriteLine(usdc.rates[0].ask);
+                Console.WriteLine(usdc2.rates[0].ask);
+                dState.Source = "up.png";
             
-            string s = $"nazwa waluty: {c.currency}\n";
-            s += $"kod waluty: {c.code}\n";
-            s += $"Data: {c.rates[0].effectiveDate}\n";
-            s += $"Cena skupu: {c.rates[0].bid}\n";
-            s += $"Cena sprzedarzy: {c.rates[0].ask}\n";
+            } else
+            {
+                dState.Source = "down.png";
+            }
+            eLabel.Text = eurc.code;
+            ePrice.Text = "Skup: " + eurc.rates[0].bid + " | Sprzedaż: " + eurc.rates[0].ask + " | " + eurc2.rates[0].ask ;
+            if (eurc.rates[0].ask > eurc2.rates[0].ask)
+            {
+                Console.WriteLine(eurc.rates[0].ask);
+                Console.WriteLine(eurc2.rates[0].ask);
+                eState.Source = "up.png";
+
+            }
+            else
+            {
+                eState.Source = "down.png";
+            }
+            pLabel.Text = gpdc.code;
+            pPrice.Text = "Skup: " + gpdc.rates[0].bid + " | Sprzedaż: " + gpdc.rates[0].ask + " | " + gpdc2.rates[0].ask;
+            if (gpdc.rates[0].ask > gpdc2.rates[0].ask)
+            {
+                Console.WriteLine(gpdc.rates[0].ask);
+                Console.WriteLine(gpdc2.rates[0].ask);
+                pState.Source = "up.png";
+
+            }
+            else
+            {
+                pState.Source = "down.png";
+            }
 
 
 
-            cLabel.Text = s; 
+
 
 
 
