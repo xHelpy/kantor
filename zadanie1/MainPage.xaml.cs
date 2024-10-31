@@ -33,6 +33,17 @@ namespace zadanie1
             InitializeComponent();
         }
 
+
+
+        /*
+         nazwa funkcji: <OnCounterClicked>
+         parametry wejściowe: <sender, EventArgs sender -> obiekt wysyłający, EventArgs -> argumenty wysyłane z przycisku>
+         wartość zwracana: <brak>
+         informacje: <Funkcja pobiera dane odnośnie walut z linku w formie JSON, Pobiera 2 daty z dpData, dpData2, sprawdzająć czy nie są zaznaczone dni weekendu,
+                     pobiera 6 informacji potrzebne do porównania 3 walut 1 daty i 2 daty, wyświetla ona dane takie jak: kod, cene sprzedaży,
+                     cene skupu, porównuje cenę skupu 1 daty i 2 daty wyświetlając zdjęcie strzałki do góry, jeżeli cena jest wyższa niż od daty drugiej lub do dołu jeżeli jest niższa
+         autor: Wojciech Todys
+        */
         private void OnCounterClicked(object sender, EventArgs e)
         {
             string date = dpData.Date.ToString("yyyy-MM-dd");
@@ -119,17 +130,6 @@ namespace zadanie1
                     pState.Source = "down.png";
                 }
            
-           
-
-
-
-
-
-
-
-
-
-
         }
     }
 
