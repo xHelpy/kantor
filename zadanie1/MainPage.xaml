@@ -7,21 +7,45 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Button
-                x:Name="CounterBtn"
-                Text="Button" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
-            <Entry
-                x:Name="xEntry">
+           
+        
+            <HorizontalStackLayout>
                 
-            </Entry>
-            <Label x:Name="cLabel" Text=""/>
-            
-            <DatePicker x:Name="dpData" MinimumDate="2003-01-01">
-                
-            </DatePicker>
+                <DatePicker x:Name="dpData" MinimumDate="2003-01-01" >
+
+                </DatePicker>
+                <DatePicker x:Name="dpData2" MinimumDate="2003-01-01">
+
+                </DatePicker>
+                <Button
+     x:Name="CounterBtn"
+     Text="Button" 
+     SemanticProperties.Hint="Counts the number of times you click"
+     Clicked="OnCounterClicked"
+     HorizontalOptions="Fill" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Image WidthRequest="100" HeightRequest="100" Source="dollar.png"></Image>
+                <Label FontSize="50" x:Name="dLabel" Text="" ></Label>
+                <Label FontSize="30" x:Name="dPrice" Text="" ></Label>
+                <Image WidthRequest="100" x:Name="dState" HeightRequest="100" Source="up.png"></Image>
+            </HorizontalStackLayout>
+           
+            <HorizontalStackLayout>
+                <Image WidthRequest="100" HeightRequest="100" Source="euro.png"></Image>
+                <Label FontSize="50" x:Name="eLabel" Text="" ></Label>
+                <Label FontSize="30" x:Name="ePrice" Text="" ></Label>
+                <Image WidthRequest="100" x:Name="eState" HeightRequest="100" Source="up.png"></Image>
+            </HorizontalStackLayout>
+       
+            <HorizontalStackLayout>
+                <Image WidthRequest="100" HeightRequest="100" Source="pund.png"></Image>
+                <Label FontSize="50" x:Name="pLabel" Text="" >
+                </Label>
+                <Label FontSize="30" x:Name="pPrice" Text="" ></Label>
+                <Image WidthRequest="100" x:Name="pState" HeightRequest="100" Source="up.png"></Image>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
